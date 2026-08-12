@@ -43,4 +43,4 @@ Then open `source-code/index.html`.
 25CS1302E - DBE & DSD
 
 ## Supervisor
-Mrs. Melinda
+Laiphangbam Melinda
