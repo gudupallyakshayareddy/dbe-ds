@@ -1,0 +1,314 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search | ResearchHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="inner-page">
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('upload_file') }}" class="brand">
+        <span class="brand-icon">R</span>
+        <span>Research<span class="brand-accent">Hub</span></span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('upload_file') }}"
+           class="nav-link">
+            Home
+        </a>
+
+        <a href="{{ url_for('search') }}"
+           class="nav-link active">
+            Search
+        </a>
+
+        <a href="{{ url_for('repository') }}"
+           class="nav-link">
+            Repository
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="nav-login">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="page-main search-page">
+
+    <!-- SEARCH HEADER -->
+
+    <section class="search-page-hero">
+
+        <div class="search-page-icon">✦</div>
+
+        <p class="eyebrow">INTELLIGENT RESEARCH DISCOVERY</p>
+
+        <h1>
+            Search beyond
+            <span>keywords.</span>
+        </h1>
+
+        <p class="search-page-description">
+            Discover research papers by meaning, concepts and context.
+            Enter a research question or topic to find the most relevant
+            papers in your repository.
+        </p>
+
+        <!-- SEARCH FORM -->
+
+        <form method="POST"
+              action="{{ url_for('search') }}"
+              class="search-page-form"
+              id="searchForm">
+
+            <span class="search-page-symbol">⌕</span>
+
+            <input
+                type="text"
+                name="query"
+                id="searchQuery"
+                placeholder="e.g. Machine learning in healthcare"
+                value="{{ query }}"
+                aria-label="Search research papers"
+                required
+            >
+
+            <button type="submit"
+                    class="search-page-button">
+                Search <span>→</span>
+            </button>
+
+        </form>
+
+        <p class="search-hint">
+            Search by research topic, question or concept
+        </p>
+
+    </section>
+
+
+    <!-- SUGGESTED TOPICS: SHOWN BEFORE SEARCH -->
+
+    {% if not query %}
+
+    <section class="suggested-searches">
+
+        <p class="eyebrow">NEED AN IDEA?</p>
+
+        <h2>Explore a research topic</h2>
+
+        <p class="suggested-description">
+            Choose a topic below to start searching.
+        </p>
+
+        <div class="suggestion-grid">
+
+            <button type="button"
+                    class="suggestion-card"
+                    data-query="Machine learning and artificial intelligence">
+                <span class="suggestion-icon">✧</span>
+                <span class="suggestion-title">Artificial Intelligence</span>
+                <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button type="button"
+                    class="suggestion-card"
+                    data-query="Deep learning and neural networks">
+                <span class="suggestion-icon">⌘</span>
+                <span class="suggestion-title">Deep Learning</span>
+                <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button type="button"
+                    class="suggestion-card"
+                    data-query="Data science and predictive analytics">
+                <span class="suggestion-icon">◫</span>
+                <span class="suggestion-title">Data Science</span>
+                <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button type="button"
+                    class="suggestion-card"
+                    data-query="Healthcare technology and medical research">
+                <span class="suggestion-icon">＋</span>
+                <span class="suggestion-title">Healthcare Research</span>
+                <span class="suggestion-arrow">↗</span>
+            </button>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- SEARCH RESULTS -->
+
+    {% if query %}
+
+    <section class="search-page-results">
+
+        <div class="search-results-heading">
+
+            <div>
+                <p class="eyebrow">SEMANTIC SEARCH</p>
+
+                <h2>Research results</h2>
+
+                <p class="search-results-subtitle">
+                    Papers ranked by semantic similarity to your query.
+                </p>
+            </div>
+
+            <div class="search-result-count">
+                <strong>{{ results|length }}</strong>
+                <span>papers found</span>
+            </div>
+
+        </div>
+
+
+        <div class="search-query-display">
+            <span class="query-search-icon">⌕</span>
+
+            <div>
+                <small>YOUR SEARCH</small>
+                <strong>{{ query }}</strong>
+            </div>
+        </div>
+
+
+        {% if results %}
+
+        <div class="search-results-list">
+
+            {% for result in results %}
+
+            <article class="search-result-card">
+
+                <div class="result-rank">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+                <div class="result-content">
+
+                    <p class="result-label">
+                        RESEARCH PAPER
+                    </p>
+
+                    <h3>{{ result[1] }}</h3>
+
+                    <p class="result-filename">
+                        <span>PDF</span> {{ result[2] }}
+                    </p>
+
+                    <p class="result-text">
+                        {% if result[3] %}
+                            {{ result[3][:350] }}
+                            {% if result[3]|length > 350 %}...{% endif %}
+                        {% else %}
+                            No extracted text is available for preview.
+                        {% endif %}
+                    </p>
+
+                    <a href="{{ url_for('view_paper', paper_id=result[0]) }}"
+                       class="result-view-link">
+                        View research paper <span>→</span>
+                    </a>
+
+                </div>
+
+                <div class="similarity-score">
+
+                    <div class="similarity-circle">
+                        <span>
+                            {{ "%.0f"|format(result[4] * 100) }}%
+                        </span>
+                    </div>
+
+                    <span class="similarity-label">
+                        Similarity
+                    </span>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        <p class="search-bottom-note">
+            Showing up to 10 matching research papers.
+        </p>
+
+        {% else %}
+
+        <div class="search-empty-state">
+
+            <div class="search-empty-icon">⌕</div>
+
+            <h3>No matching research papers found</h3>
+
+            <p>
+                Try a broader topic or use different words.
+                Only papers with generated embeddings can appear
+                in semantic search results.
+            </p>
+
+            <button type="button"
+                    class="btn btn-primary"
+                    id="clearSearch">
+                Try another search
+            </button>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+    {% endif %}
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="footer-content">
+
+        <div>
+            <strong>Research<span>Hub</span></strong>
+            <p>Research Knowledge Repository</p>
+        </div>
+
+        <div>DSE &amp; DBD Project</div>
+
+    </div>
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+```

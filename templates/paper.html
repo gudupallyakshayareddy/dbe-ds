@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ paper[1] }} | ResearchHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="inner-page">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('upload_file') }}"
+       class="brand">
+
+        <span class="brand-icon">R</span>
+
+        <span>
+            Research<span class="brand-accent">Hub</span>
+        </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('upload_file') }}"
+           class="nav-link">
+            Home
+        </a>
+
+        <a href="{{ url_for('search') }}"
+           class="nav-link">
+            Search
+        </a>
+
+        <a href="{{ url_for('repository') }}"
+           class="nav-link active">
+            Repository
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="nav-login">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= PAPER PAGE ================= -->
+
+<main class="page-main">
+
+<section class="paper-detail-page">
+
+
+    <a href="{{ url_for('repository') }}"
+       class="back-link">
+        ← Back to Repository
+    </a>
+
+
+    <div class="paper-header-card">
+
+        <div class="large-paper-icon">
+            PDF
+        </div>
+
+        <div class="paper-title-area">
+
+            <p class="eyebrow">
+                RESEARCH PAPER
+            </p>
+
+            <h1>
+                {{ paper[1] }}
+            </h1>
+
+            <p class="detail-filename">
+                {{ paper[2] }}
+            </p>
+
+            <p class="detail-date">
+                Uploaded {{ paper[4] }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="paper-actions">
+
+        <a
+            href="{{ url_for('download_paper',
+                             paper_id=paper[0]) }}"
+            class="action-btn download-action"
+        >
+            ↓ Download
+        </a>
+
+
+        <a
+            href="{{ url_for('update_paper',
+                             paper_id=paper[0]) }}"
+            class="action-btn update-action"
+        >
+            ✎ Update
+        </a>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('delete_paper',
+                               paper_id=paper[0]) }}"
+            onsubmit="return confirm(
+                'Are you sure you want to delete this research paper?'
+            );"
+        >
+
+            <button
+                type="submit"
+                class="action-btn delete-action"
+            >
+                Delete
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- EXTRACTED TEXT -->
+
+    <div class="content-card">
+
+        <div class="content-card-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    DOCUMENT CONTENT
+                </p>
+
+                <h2>
+                    Extracted Research Text
+                </h2>
+
+            </div>
+
+            <span class="content-badge">
+                TEXT
+            </span>
+
+        </div>
+
+
+        <pre class="paper-text">{{ paper[3] }}</pre>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <strong>
+                Research<span>Hub</span>
+            </strong>
+
+            <p>
+                Research Knowledge Repository
+            </p>
+        </div>
+
+        <div>
+            DSE & DBD Project
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

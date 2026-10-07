@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Repository | ResearchHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="inner-page">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('upload_file') }}"
+       class="brand">
+
+        <span class="brand-icon">R</span>
+
+        <span>
+            Research<span class="brand-accent">Hub</span>
+        </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('upload_file') }}"
+           class="nav-link">
+            Home
+        </a>
+
+        <a href="{{ url_for('search') }}"
+           class="nav-link">
+            Search
+        </a>
+
+        <a href="{{ url_for('repository') }}"
+           class="nav-link active">
+            Repository
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="nav-login">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= PAGE HEADER ================= -->
+
+<main class="page-main">
+
+<section class="page-header">
+
+    <div>
+
+        <p class="eyebrow">
+            YOUR KNOWLEDGE SPACE
+        </p>
+
+        <h1>
+            Research Repository
+        </h1>
+
+        <p>
+            Browse and manage your stored research papers.
+        </p>
+
+    </div>
+
+
+    <a href="{{ url_for('upload_file') }}"
+       class="btn btn-primary">
+
+        + Upload Paper
+
+    </a>
+
+</section>
+
+
+<!-- ================= PAPER LIST ================= -->
+
+<section class="repository-section">
+
+    <div class="repository-toolbar">
+
+        <div>
+
+            <span class="paper-count">
+                {{ papers|length }}
+            </span>
+
+            <span>
+                research papers
+            </span>
+
+        </div>
+
+    </div>
+
+
+    {% if papers %}
+
+    <div class="paper-list">
+
+        {% for paper in papers %}
+
+        <article class="paper-card">
+
+            <div class="paper-icon">
+                PDF
+            </div>
+
+
+            <div class="paper-info">
+
+                <h2>
+                    {{ paper[1] }}
+                </h2>
+
+                <p class="paper-filename">
+                    {{ paper[2] }}
+                </p>
+
+                <p class="paper-date">
+                    Uploaded:
+                    {{ paper[3] }}
+                </p>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('view_paper',
+                                 paper_id=paper[0]) }}"
+                class="open-paper"
+            >
+                Open Paper
+                <span>→</span>
+            </a>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            ∅
+        </div>
+
+        <h2>
+            No research papers yet
+        </h2>
+
+        <p>
+            Upload your first research paper to begin.
+        </p>
+
+        <a href="{{ url_for('upload_file') }}"
+           class="btn btn-primary">
+
+            Upload Research Paper
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <strong>
+                Research<span>Hub</span>
+            </strong>
+
+            <p>
+                Research Knowledge Repository
+            </p>
+        </div>
+
+        <div>
+            DSE & DBD Project
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | ResearchHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+
+<div class="auth-wrapper">
+
+
+    <div class="auth-brand">
+
+        <a href="{{ url_for('login') }}"
+           class="brand">
+
+            <span class="brand-icon">R</span>
+
+            <span>
+                Research<span class="brand-accent">Hub</span>
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <div class="auth-card">
+
+        <div class="auth-icon">
+            R
+        </div>
+
+        <p class="eyebrow">
+            WELCOME BACK
+        </p>
+
+        <h1>
+            Sign in to ResearchHub
+        </h1>
+
+        <p class="auth-subtitle">
+            Access your research knowledge repository.
+        </p>
+
+
+        {% if error %}
+
+        <div class="error-message">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="btn btn-primary auth-button"
+            >
+                Login
+                <span>→</span>
+            </button>
+
+
+        </form>
+
+
+        <p class="auth-switch">
+            Don't have an account?
+
+            <a href="{{ url_for('register') }}">
+                Create one
+            </a>
+        </p>
+
+    </div>
+
+
+    <p class="auth-footer">
+        Research Knowledge Repository
+    </p>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Update Paper | ResearchHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="inner-page">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('upload_file') }}"
+       class="brand">
+
+        <span class="brand-icon">R</span>
+
+        <span>
+            Research<span class="brand-accent">Hub</span>
+        </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('upload_file') }}"
+           class="nav-link">
+            Home
+        </a>
+
+        <a href="{{ url_for('search') }}"
+           class="nav-link">
+            Search
+        </a>
+
+        <a href="{{ url_for('repository') }}"
+           class="nav-link active">
+            Repository
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="nav-login">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= UPDATE ================= -->
+
+<main class="page-main">
+
+<section class="form-page">
+
+
+    <a href="{{ url_for('repository') }}"
+       class="back-link">
+        ← Back to Repository
+    </a>
+
+
+    <div class="form-header">
+
+        <p class="eyebrow">
+            DOCUMENT MANAGEMENT
+        </p>
+
+        <h1>
+            Update Research Paper
+        </h1>
+
+        <p>
+            Replace the current PDF with a new research document.
+        </p>
+
+    </div>
+
+
+    <div class="form-card">
+
+
+        {% if error %}
+
+        <div class="error-message">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <div class="current-paper">
+
+            <span class="current-icon">
+                PDF
+            </span>
+
+            <div>
+
+                <small>
+                    CURRENT PAPER
+                </small>
+
+                <strong>
+                    {{ paper[1] }}
+                </strong>
+
+                <span>
+                    {{ paper[2] }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+
+            <label class="form-label">
+                Select New PDF
+            </label>
+
+
+            <label class="file-label large-file">
+
+                <span id="updateFileText">
+                    Choose new PDF file
+                </span>
+
+                <input
+                    type="file"
+                    name="file"
+                    accept=".pdf"
+                    required
+                    id="updateFileInput"
+                >
+
+            </label>
+
+
+            <p class="input-help">
+                Uploading a new PDF will regenerate the extracted
+                text and semantic embedding.
+            </p>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="{{ url_for('repository') }}"
+                    class="btn btn-secondary"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Update Paper
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <strong>
+                Research<span>Hub</span>
+            </strong>
+
+            <p>
+                Research Knowledge Repository
+            </p>
+        </div>
+
+        <div>
+            DSE & DBD Project
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

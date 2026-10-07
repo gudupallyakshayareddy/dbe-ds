@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        ResearchHub | Research Knowledge Repository
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('upload_file') }}"
+       class="brand">
+
+        <span class="brand-icon">
+            R
+        </span>
+
+        <span>
+            Research<span class="brand-accent">Hub</span>
+        </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('upload_file') }}"
+           class="nav-link active">
+
+            Home
+
+        </a>
+
+
+        <a href="{{ url_for('search') }}"
+           class="nav-link">
+
+            Search
+
+        </a>
+
+
+        <a href="{{ url_for('repository') }}"
+           class="nav-link">
+
+            Repository
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="nav-login">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <div class="eyebrow">
+
+            RESEARCH KNOWLEDGE REPOSITORY
+
+        </div>
+
+
+        <h1>
+
+            Discover Research
+
+            <span>
+                By Meaning.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Upload, organize and discover research papers using
+            intelligent semantic search and relevance-based retrieval.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+
+            <a href="#upload"
+               class="btn btn-primary">
+
+                Upload Research Paper
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('repository') }}"
+               class="btn btn-secondary">
+
+                Explore Repository
+
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+
+            <div>
+
+                <strong>
+                    PDF
+                </strong>
+
+                <span>
+                    Document Support
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    384D
+                </strong>
+
+                <span>
+                    Semantic Embeddings
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    AI
+                </strong>
+
+                <span>
+                    Meaning-Based Search
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SEARCH CARD
+         ===================================================== -->
+
+    <div class="search-panel">
+
+
+        <div class="search-icon">
+
+            ✦
+
+        </div>
+
+
+        <p class="panel-label">
+
+            INTELLIGENT SEARCH
+
+        </p>
+
+
+        <h2>
+
+            Find papers by meaning
+
+        </h2>
+
+
+        <p>
+
+            Search using concepts, topics or questions.
+            Results are ranked according to semantic similarity.
+
+        </p>
+
+
+        <form method="POST"
+              action="{{ url_for('search') }}"
+              class="main-search-form">
+
+
+            <div class="search-input-wrapper">
+
+                <span>
+                    ⌕
+                </span>
+
+
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="Try: machine learning in healthcare"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit"
+                    class="search-button">
+
+                Search
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURES
+     ========================================================= -->
+
+<section class="features-section">
+
+
+    <div class="section-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                WHAT YOU CAN DO
+            </p>
+
+
+            <h2>
+
+                Everything you need for
+
+                <span>
+                    research discovery.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            A simple workspace for storing, understanding and
+            finding research documents.
+
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+
+            <div class="feature-number">
+                01
+            </div>
+
+
+            <div class="feature-icon">
+                ↑
+            </div>
+
+
+            <h3>
+                Upload Papers
+            </h3>
+
+
+            <p>
+
+                Upload PDF research papers and automatically
+                extract their text for further processing.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+
+            <div class="feature-number">
+                02
+            </div>
+
+
+            <div class="feature-icon">
+                ⌕
+            </div>
+
+
+            <h3>
+                Semantic Search
+            </h3>
+
+
+            <p>
+
+                Search research based on meaning and context
+                instead of relying only on exact keywords.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+
+            <div class="feature-number">
+                03
+            </div>
+
+
+            <div class="feature-icon">
+                ↗
+            </div>
+
+
+            <h3>
+                Relevance Ranking
+            </h3>
+
+
+            <p>
+
+                Research papers are ordered according to their
+                similarity to your search query.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     UPLOAD
+     ========================================================= -->
+
+<section class="upload-section"
+         id="upload">
+
+
+    <div class="upload-container">
+
+
+        <div class="upload-heading">
+
+
+            <p class="eyebrow">
+                DOCUMENT PROCESSING
+            </p>
+
+
+            <h2>
+                Add a new research paper
+            </h2>
+
+
+            <p>
+
+                Upload a PDF and let the repository extract,
+                process and store its research content.
+
+            </p>
+
+        </div>
+
+
+        <div class="upload-card">
+
+
+            <div class="upload-symbol">
+                ↑
+            </div>
+
+
+            <h3>
+                Upload PDF
+            </h3>
+
+
+            <p>
+
+                Select a research paper from your computer.
+
+            </p>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('upload_file') }}"
+                enctype="multipart/form-data"
+                id="uploadForm"
+            >
+
+
+                <label class="file-label">
+
+
+                    <span id="fileText">
+
+                        Choose PDF file
+
+                    </span>
+
+
+                    <input
+                        type="file"
+                        name="file"
+                        accept=".pdf"
+                        required
+                        id="fileInput"
+                    >
+
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary upload-button"
+                >
+
+                    Upload & Process
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <div class="upload-note">
+
+                PDF files only
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     UPLOAD RESULT
+     ========================================================= -->
+
+{% if filename %}
+
+<section class="result-section">
+
+
+    <div class="success-card">
+
+
+        <div class="success-top">
+
+
+            <div class="success-icon">
+
+                ✓
+
+            </div>
+
+
+            <div>
+
+                <p class="eyebrow">
+
+                    SUCCESS
+
+                </p>
+
+
+                <h2>
+
+                    Research paper processed
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="file-information">
+
+
+            <span>
+                FILE
+            </span>
+
+
+            <strong>
+
+                {{ filename }}
+
+            </strong>
+
+
+        </div>
+
+
+        <div class="text-heading">
+
+
+            <h3>
+
+                Extracted Research Text
+
+            </h3>
+
+
+            <span>
+
+                Processed successfully
+
+            </span>
+
+        </div>
+
+
+        <pre class="extracted-text">{{ extracted_text }}</pre>
+
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+
+    <div class="footer-content">
+
+
+        <div>
+
+            <strong>
+
+                Research<span>
+                    Hub
+                </span>
+
+            </strong>
+
+
+            <p>
+
+                Research Knowledge Repository
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            DSE &amp; DBD Project
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
