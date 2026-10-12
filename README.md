@@ -1,46 +1,34 @@
-# Research Knowledge Repository with Semantic Search
+# DSE & DBD Project
 
-A student project implementing a centralized research-document repository with semantic search.
+## Aim
+To develop a research knowledge repository that stores research papers, extracts their text, generates embeddings, and enables semantic search to retrieve relevant research information.
 
-## Features
-- PDF document upload
-- PDF text extraction
-- Semantic embedding generation
-- Meaning-based search
-- Similarity-based result ranking
-- Simple browser interface
-- Local research-paper dataset support
+## Objectives
+- Upload and manage research papers in PDF format.
+- Extract and preprocess text from research papers.
+- Generate text embeddings using machine learning techniques.
+- Store paper metadata, extracted text, and embeddings in PostgreSQL with pgvector.
+- Perform semantic search and rank papers by relevance.
+- Implement database operations and maintain activity records.
+- Provide a user-friendly web interface for research paper management.
 
-## Project Structure
-```text
-├── README.md
-├── source-code/
-├── dataset/
-├── documentation/
-├── screenshots/
-├── results/
-└── requirements.txt
-```
+## Review 1 – Project Foundation
+- Defined the problem statement and project scope.
+- Identified the required technologies and architecture.
+- Designed the initial database and web application structure.
+- Started implementing PDF upload, text extraction, and database storage.
 
-## Quick Start
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-cd source-code
-uvicorn main:app --reload
-```
+## Review 2 – Core Implementation
+- Implemented PDF text extraction and embedding generation.
+- Integrated PostgreSQL and pgvector for storing paper information and embeddings.
+- Developed the research repository interface.
+- Worked on semantic search and relevance-based retrieval.
 
-Then open `source-code/index.html`.
+## Review 3 – Advanced Implementation and Integration
+- Improved research paper management and database operations.
+- Worked on update and delete functionality and database activity tracking.
+- Integrated machine learning components and analytics.
+- Continued testing search, database operations, and application navigation.
 
-## Team
-- 2510080024 - AKSHAYA
-- 2510080022 - NIHARIKA
-- 2510080019 - HARSHINI
-- 2510080023 - VARNA
-
-## Course
-25CS1302E - DBE & DSD
-
-## Supervisor
-Laiphangbam Melinda
+## Conclusion
+The Research Knowledge Repository combines database management, machine learning, and semantic search to organize research papers and retrieve relevant information efficiently. The project demonstrates how text preprocessing, embeddings, vector similarity, and database operations can work together in a practical research application.
