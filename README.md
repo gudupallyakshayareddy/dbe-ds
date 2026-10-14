@@ -1,5 +1,7 @@
-# DSE & DBD Project
-         # ResearchHub — Research Knowledge Repository
+# DSE & DBD Project  
+
+# ResearchHub — Research Knowledge Repository
+        
 ## Aim
 To develop a research knowledge repository that stores research papers, extracts their text, generates embeddings, and enables semantic search to retrieve relevant research information.
 
